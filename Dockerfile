@@ -14,5 +14,5 @@ RUN cargo install --target ${TARGET} --path .
 FROM alpine
 WORKDIR /app
 COPY --from=builder /usr/local/cargo/bin/wake-up-on-lan .
-COPY ./static ./static
+COPY . .
 CMD ["./wake-up-on-lan"]
