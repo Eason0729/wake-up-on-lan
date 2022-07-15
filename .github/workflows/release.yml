@@ -41,16 +41,3 @@ jobs:
             files: 'wake-up-on-lan*'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  commit:
-    name: commit to release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: commit
-        run: |
-          git config --global user.name "CI"
-          git config --global user.email "ci@rust.ci"
-          git add -A
-          if git commit -m "ci" ; then
-            git push release
-          fi
