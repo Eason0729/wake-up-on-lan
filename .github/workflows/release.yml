@@ -1,0 +1,35 @@
+# from https://github.com/rust-build/rust-build.action
+on:
+  release:
+    types: [created]
+
+jobs:
+  release-arm64:
+    name: release ${{ matrix.target }}
+    runs-on: [self-hosted, linux, ARM64]
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [aarch64-unknown-linux-musl, aarch64-pc-windows-gnullvm]
+    steps:
+      - uses: actions/checkout@master
+      - name: Compile and release
+        uses: rust-build/rust-build.action@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          RUSTTARGET: ${{ matrix.target }}
+          EXTRA_FILES: "README.md"
+  commit:
+    name: commit to release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: commit
+        run: |
+          git config --global user.name "CI"
+          git config --global user.email "ci@rust.ci"
+          git add -A
+          if git commit -m "ci" ; then
+            git push release
+          fi
