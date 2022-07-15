@@ -13,7 +13,7 @@ use std::fs;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let raw_json = fs::read_to_string("./config.json")
-        .expect("error reading confgi.json, maybe the file doesn't exist.");
+        .expect("error reading config.json, maybe the file doesn't exist.");
     let config: Config = serde_json::from_str(&raw_json)
         .expect("error reading config.json, it's not well formatted");
 
