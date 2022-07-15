@@ -2,7 +2,7 @@
 
 A simple web site to wake up your computer when you are not home.
 
-![Image](https://imgur.com/download/qyxKJph/ "showcase")
+![image](https://user-images.githubusercontent.com/30045503/179151785-dd48b5a7-72c3-4163-8485-623e74350690.png)
 
 ## How to use
 
