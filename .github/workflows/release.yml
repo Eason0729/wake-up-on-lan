@@ -31,15 +31,14 @@ jobs:
       - name: Package
         shell: bash
         run: |
-          #strip target/${{ matrix.target }}/release/testmest
+          #strip target/${{ matrix.target }}/release/wake-up-on-lan
           cd target/${{ matrix.target }}/release          
-          tar czvf ../../../testmest-${{ matrix.target }}.tar.gz testmest
+          tar czvf ../../../wake-up-on-lan-${{ matrix.target }}.tar.gz wake-up-on-lan
           cd -
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
-            # why testmest?
-            files: 'testmest*'
+            files: 'wake-up-on-lan*'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   commit:
