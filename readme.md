@@ -16,8 +16,7 @@ A simple web site to wake up your computer when you are not home.
 ├── config.json
 ├── public
 │   └── index.html
-├── wake-up-on-lan
-└── wake-up-on-lan-aarch64-unknown-linux-gnu.tar.gz
+└── wake-up-on-lan
 ```
 
 4. Edit ``config.json``
@@ -35,10 +34,3 @@ A simple web site to wake up your computer when you are not home.
 ```shell
 ./wake-up-on-lan
 ```
-
-## Goals
-
-I made this project to learn:
-
-1. CI/CD
-2. raw UDP in Rust
