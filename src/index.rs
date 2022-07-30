@@ -1,8 +1,7 @@
-use actix_files;
-use actix_web::{Error, HttpRequest};
+use actix_web::{http::header::ContentType, HttpRequest, HttpResponse, Responder};
 
-pub async fn index_handler(_req: HttpRequest) -> Result<actix_files::NamedFile, Error> {
-    let path = std::path::PathBuf::from("./public/index.html");
-    let file = actix_files::NamedFile::open(path)?;
-    Ok(file.use_last_modified(true))
+pub async fn index_handler(_req: HttpRequest) -> impl Responder {
+    HttpResponse::Ok()
+        .content_type(ContentType::html())
+        .body(include_str!("../index.html"))
 }

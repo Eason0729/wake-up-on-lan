@@ -6,31 +6,13 @@ A simple web site to wake up your computer when you are not home.
 
 ## How to use
 
-1. Clone the repo
-2. Download achieve files from release, and uncompress it.
-3. Then, the folder structure should look like this.
+1. Download achieve files from release, and uncompress it.
+2. edit ``.env`` file
 
-```shell
-~ tree .
-.
-├── config.json
-├── public
-│   └── index.html
-└── wake-up-on-lan
+```env
+PORT=80
+MAC_ADDRESS=b28116f31e6c
+PASSWORD=abcdefg
 ```
 
-4. Edit ``config.json``
-
-```javascript
-{
-    "password":"my awsome password",// password
-    "mac":[1,1,1,1,1,1],// mac address of the computer you want to wake up
-    "port":80// port
-}
-```
-
-5. Run wake-up-on-lan
-
-```shell
-./wake-up-on-lan
-```
+3. execute binary
