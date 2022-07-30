@@ -14,7 +14,6 @@ use actix_web::{web, App, HttpServer};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-
     dotenv().ok();
 
     let config = config::generate_config();
