@@ -1,7 +1,6 @@
 extern crate dotenv;
 
 use dotenv::dotenv;
-use std::env;
 
 mod config;
 mod index;

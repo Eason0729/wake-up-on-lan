@@ -7,6 +7,9 @@ edition = "2021"
 
 [profile.release]
 opt-level = "z"
+lto = true
+codegen-units = 1
+incremental = false
 
 [dependencies]
 actix-web = "4"
