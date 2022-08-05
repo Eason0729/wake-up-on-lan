@@ -1,12 +1,16 @@
-FROM rust:1.60.0 AS builder
-WORKDIR /complier
+FROM rust:1.62.1 AS builder
+
+WORKDIR /complier/wake-up-on-lan
 
 # build for musl
 # TARGET=x86_64-unknown-linux-musl
 ARG TARGET
 
-RUN USER=root cargo new wake-up-on-lan
-WORKDIR /complier/wake-up-on-lan
+RUN apt update -y
+RUN apt install musl-tools -y
+
+RUN rustup target add ${TARGET}
+
 COPY . .
 
 RUN cargo install --target ${TARGET} --path .
