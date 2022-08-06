@@ -65,15 +65,15 @@
             event.preventDefault();
             let password=document.querySelector("input#password").value;
             const response = await fetch("/wake", {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
                 },
-                redirect: 'follow', // manual, *follow, error
-                body: JSON.stringify({password}) // body data type must match "Content-Type" header
+                redirect: 'follow',
+                body: password
             });
-            let result=await response.json();
-            if(result.status){
+            let result=await response.text();
+            if(result=="true"){
                 let modal = new bootstrap.Modal('#success');
                 modal.show();
             }else{

@@ -26,10 +26,11 @@ impl MagicPacket {
         }
     }
     pub fn send(&self) {
-        let socket = UdpSocket::bind((Ipv4Addr::new(0, 0, 0, 0), 0)).unwrap();
+        println!("user:  sending MagicPacket");
+        let socket = UdpSocket::bind((Ipv4Addr::UNSPECIFIED, 0)).unwrap();
         socket.set_broadcast(true).unwrap();
         socket
-            .send_to(&self.packet, (Ipv4Addr::new(255, 255, 255, 255), 9))
+            .send_to(&self.packet, (Ipv4Addr::BROADCAST, 9))
             .unwrap();
     }
 }

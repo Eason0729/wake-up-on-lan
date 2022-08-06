@@ -1,5 +1,5 @@
-use actix_web::{web, Responder};
-use serde::{Deserialize, Serialize};
+use actix_web::{web, HttpResponse, Responder};
+use argon2::verify_encoded;
 use std::{
     collections::hash_map::DefaultHasher,
     hash::{Hash, Hasher},
@@ -7,32 +7,27 @@ use std::{
 
 use crate::{config::Config, wake::*};
 
-#[derive(Deserialize)]
-pub struct RequestData {
-    password: String,
+fn default_hash<T>(inp: &T) -> u64
+where
+    T: Hash,
+{
+    let mut hasher = DefaultHasher::new();
+    inp.hash(&mut hasher);
+    hasher.finish()
 }
 
-#[derive(Serialize)]
-pub struct RespondData {
-    status: bool,
-}
+pub async fn password_handler(password: String, config: web::Data<Config>) -> impl Responder {
+    let res;
 
-pub async fn password_handler(
-    data: web::Json<RequestData>,
-    config: web::Data<Config>,
-) -> impl Responder {
-    let mut hasher = DefaultHasher::new();
-    (data.password).hash(&mut hasher);
-    let left = hasher.finish();
-
-    let mut hasher = DefaultHasher::new();
-    (config.password).hash(&mut hasher);
-    let right = hasher.finish();
-
-    if left == right {
-        MagicPacket::new(&config.mac).send();
-        return web::Json(RespondData { status: true });
+    if config.hashed {
+        res = verify_encoded(&config.password, password.as_bytes()).unwrap();
+    } else {
+        res = default_hash(&password) == default_hash(&config.password);
     }
 
-    web::Json(RespondData { status: false })
+    if res {
+        MagicPacket::new(&config.mac).send();
+        return HttpResponse::Ok().body("true");
+    }
+    HttpResponse::Ok().body("false")
 }

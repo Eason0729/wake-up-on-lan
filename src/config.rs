@@ -1,23 +1,41 @@
-use serde::Deserialize;
-use std::collections::HashMap;
+use std::{collections::HashMap, env::var};
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Clone)]
 pub struct Config {
+    pub hashed: bool,
     pub password: String,
     pub mac: [u8; 6],
     pub port: u16,
 }
 
 pub fn generate_config() -> Config {
-    let password = std::env::var("PASSWORD").expect("set password");
-    let mac = std::env::var("MAC_ADDRESS").expect("set mac address");
+    let mut password = var("PASSWORD").unwrap_or("abcdefg".to_string());
+    let mac = var("MAC_ADDRESS").expect("set mac address");
     let mac = hex(&mac);
-    let port: u16 = std::env::var("PORT")
+    let port: u16 = var("PORT")
         .expect("set port")
         .parse()
         .expect("invalid port");
+    let mut hashed = true;
+    match var("HASHED_PASSWORD") {
+        Ok(x) => {
+            password = x;
+            if password.starts_with("\"") {
+                password = password.strip_prefix("\"").unwrap().to_string();
+            }
+            if password.ends_with("\"") {
+                password = password.strip_suffix("\"").unwrap().to_string();
+            }
+        }
+        Err(_) => hashed = false,
+    }
+
+    if hashed {
+        println!("config: using hashed password");
+    }
 
     Config {
+        hashed,
         password,
         mac,
         port,
