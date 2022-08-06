@@ -18,15 +18,7 @@ pub fn generate_config() -> Config {
         .expect("invalid port");
     let mut hashed = true;
     match var("HASHED_PASSWORD") {
-        Ok(x) => {
-            password = x;
-            if password.starts_with("\"") {
-                password = password.strip_prefix("\"").unwrap().to_string();
-            }
-            if password.ends_with("\"") {
-                password = password.strip_suffix("\"").unwrap().to_string();
-            }
-        }
+        Ok(x) => password = x,       
         Err(_) => hashed = false,
     }
 
