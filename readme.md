@@ -28,8 +28,8 @@ PASSWORD=abcdefg
 1. Hash password
 
 ```shell
-~  echo -n "thisismypassword" | npx argon2-cli -e
-$argon2i$v=19$m=4096,t=3,p=1$wst5qhbgk2lu1ih4dmuxvg$ls1alrvdiwtvzhwnzcm1dugg+5dto3dt1d5v9xtlws4
+~  echo -n "abcdefg" | npx argon2-cli -e
+$argon2i$v=19$m=4096,t=3,p=1$hfcSURRz3uackLG9Kb1Z/g$NQM4G7sWd2xT9laJCdmkwDoSV0/i5KL6aBKnETHC4Cg
 ```
 
 2. Edit ``.env`` file
