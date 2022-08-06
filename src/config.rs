@@ -18,7 +18,7 @@ pub fn generate_config() -> Config {
         .expect("invalid port");
     let mut hashed = true;
     match var("HASHED_PASSWORD") {
-        Ok(x) => password = x,       
+        Ok(x) => password = x,
         Err(_) => hashed = false,
     }
 
