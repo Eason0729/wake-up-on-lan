@@ -18,7 +18,7 @@ PASSWORD=abcdefg
 3. Run the program
 
 ```shell
-./wake-up-on-lan
+$ ./wake-up-on-lan
 ```
 
 ## Advance Features
@@ -28,7 +28,7 @@ PASSWORD=abcdefg
 1. Hash password
 
 ```shell
-~  echo -n "abcdefg" | npx argon2-cli -e
+$  echo -n "abcdefg" | npx argon2-cli -e
 $argon2i$v=19$m=4096,t=3,p=1$hfcSURRz3uackLG9Kb1Z/g$NQM4G7sWd2xT9laJCdmkwDoSV0/i5KL6aBKnETHC4Cg
 ```
 
@@ -49,6 +49,6 @@ Set "ADDRESS" environment variable
 ### Docker
 
 ```shell
-~  docker build . -t wake-up-on-lan
-~  docker run --net=host -d -e PORT=8080 -e MAC_ADDRESS=b28116f31e6c -e PASSWORD=abcdefg wake-up-on-lan
+$  docker build . --build-arg TARGET=x86_64-unknown-linux-musl -t wake-up-on-lan
+$  docker run --net=host -d -e PORT=8080 -e MAC_ADDRESS=b28116f31e6c -e PASSWORD=abcdefg wake-up-on-lan
 ```
