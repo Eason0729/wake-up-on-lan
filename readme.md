@@ -2,11 +2,11 @@
 
 A simple web site to wake up your computer when you are not home.
 
-![image](https://user-images.githubusercontent.com/30045503/179151785-dd48b5a7-72c3-4163-8485-623e74350690.png)
+![demo image](https://user-images.githubusercontent.com/30045503/184494866-f941a2be-e275-4ec9-bf91-ddf95cea7c8a.png)
 
 ## Get Started
 
-1. Download achieve files from release, and uncompress it.
+1. Download achieve files from [release](https://github.com/Eason0729/wake-up-on-lan/releases), and uncompress(unzip) it.
 2. Edit ``.env`` file(or set environment variable)
 
 ```env
