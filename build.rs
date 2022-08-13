@@ -4,7 +4,7 @@ use std::io::{BufReader, Write};
 use std::path::*;
 use std::{fs::File, io::Read};
 
-extern crate glob; 
+extern crate glob;
 
 use glob::glob;
 
