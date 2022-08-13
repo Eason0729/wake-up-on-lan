@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       matrix:
-        target: [ aarch64-unknown-linux-gnu, x86_64-unknown-linux-gnu, x86_64-pc-windows-gnu, arm-unknown-linux-gnueabihf]
+        target: [ aarch64-unknown-linux-gnu, x86_64-unknown-linux-gnu, arm-unknown-linux-gnueabihf]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -30,14 +30,15 @@ jobs:
 
       - name: Package
         shell: bash
+        continue-on-error: true
         run: |
           #strip target/${{ matrix.target }}/release/wake-up-on-lan
           cd target/${{ matrix.target }}/release          
-          tar czvf ../../../wake-up-on-lan-${{ matrix.target }}.tar.gz wake-up-on-lan
+          tar czvf ../../../wake-up-on-lan-${{ matrix.target }}.tar.gz wake-up-on-lan*
           cd -
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
-            files: 'wake-up-on-lan*'
+            files: 'wake-up-on-lan*.tar.gz'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
