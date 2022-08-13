@@ -10,9 +10,11 @@ A simple web site to wake up your computer when you are not home.
 2. Edit ``.env`` file(or set environment variable)
 
 ```env
-PORT=80
-MAC_ADDRESS=b28116f31e6c
-PASSWORD=abcdefg
+PORT=80 # required
+MAC_ADDRESS=b28116f31e6c # required
+PASSWORD=abcdefg # required if HASHED_PASSWORD is not presented
+ADDRESS='0.0.0.0' # optional
+HASHED_PASSWORD='$argon2i$v=19$m=4096,t=3,p=1$hfcSURRz3uackLG9Kb1Z/g$NQM4G7sWd2xT9laJCdmkwDoSV0/i5KL6aBKnETHC4Cg' # optional
 ```
 
 3. Run the program

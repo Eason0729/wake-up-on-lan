@@ -26,7 +26,7 @@ impl MagicPacket {
         }
     }
     pub fn send(&self) {
-        println!("user:  sending MagicPacket");
+        println!("user  : sending MagicPacket");
         let socket = UdpSocket::bind((Ipv4Addr::UNSPECIFIED, 0)).unwrap();
         socket.set_broadcast(true).unwrap();
         socket
