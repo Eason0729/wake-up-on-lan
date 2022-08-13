@@ -1,3 +1,4 @@
 /target
 /.cargo
+/tmp
 *.env
