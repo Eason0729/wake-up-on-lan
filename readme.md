@@ -54,3 +54,9 @@ Set "ADDRESS" environment variable
 $  docker build . --build-arg TARGET=x86_64-unknown-linux-musl -t wake-up-on-lan
 $  docker run --net=host -d -e PORT=8080 -e MAC_ADDRESS=b28116f31e6c -e PASSWORD=abcdefg wake-up-on-lan
 ```
+
+alternatively, using docker (only arm64 image is available)
+
+```shell
+docker pull ghcr.io/eason0729/wake-up-on-lan:latest
+```

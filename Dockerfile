@@ -7,13 +7,13 @@ RUN apt install musl-tools -y
 
 # TARGET=x86_64-unknown-linux-musl
 # TARGET=aarch64-unknown-linux-musl
-ARG TARGET
+# ARG TARGET
 
-RUN rustup target add ${TARGET}
+RUN export TARGET=$(uname -m)-unknown-linux-musl && rustup target add ${TARGET}
 
 COPY . .
 
-RUN cargo install --target ${TARGET} --path .
+RUN export TARGET=$(uname -m)-unknown-linux-musl && cargo install --target ${TARGET} --path .
 
 FROM scratch
 COPY --from=builder /usr/local/cargo/bin/wake-up-on-lan .
