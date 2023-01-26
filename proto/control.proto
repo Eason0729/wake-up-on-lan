@@ -1,0 +1,13 @@
+syntax = "proto3";
+package control;
+
+service Controled {
+    rpc shutdown (ShutdownRequest) returns (ShutdownReply);
+}
+message ShutdownRequest {
+}
+
+message ShutdownReply {
+    bool success = 1;
+    string error = 2;
+}

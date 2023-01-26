@@ -21,11 +21,13 @@ strip = true
 
 [build-dependencies]
 minify-html = "0.9"
+tonic-build = "0.8.4"
 glob = "0.3"
 
 [dependencies]
 dotenv = "0.15.0"
 rust-argon2 = "1.0"
+tonic = "0.8.3"
 
 [dependencies.actix-web]
 version = "4.1"

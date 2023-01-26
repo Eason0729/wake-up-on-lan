@@ -3,6 +3,7 @@ extern crate dotenv;
 use dotenv::dotenv;
 
 mod config;
+mod conn;
 mod index;
 mod password;
 mod wake;

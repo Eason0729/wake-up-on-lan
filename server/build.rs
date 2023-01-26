@@ -3,10 +3,9 @@ use std::fs;
 use std::io::{BufReader, Write};
 use std::path::*;
 use std::{fs::File, io::Read};
-
 extern crate glob;
-
 use glob::glob;
+use tonic_build;
 
 fn parse_file(src: &Path, dist: &Path) {
     let file = File::open(src).unwrap();
@@ -50,4 +49,6 @@ fn parse_folder(path: &str) {
 
 fn main() {
     parse_folder("static");
+    tonic_build::compile_protos("../proto/control.proto").unwrap();
+    tonic_build::compile_protos("../proto/helloworld.proto").unwrap();
 }
