@@ -1,37 +1,4 @@
-[package]
-name = "wake-up-on-lan"
-version = "3.0.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[profile.release]
-opt-level = "s"
-lto = true
-codegen-units = 1
-incremental = false
-
-[profile.optsize]
-inherits = "release"
-opt-level = "z"
-lto = true
-codegen-units = 1
-panic = "abort"
-strip = true
-
-[build-dependencies]
-minify-html = "0.9"
-glob = "0.3"
-
-[dependencies]
-dotenv = "0.15.0"
-rust-argon2 = "1.0"
-
-[dependencies.actix-web]
-version = "4.1"
-default-features = false
-features = ["macros"]
-
-[dependencies.serde]
-version = "1.0"
-features = ["derive"]
+[workspace]
+members = [
+    "client","server"
+]
