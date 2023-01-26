@@ -11,6 +11,14 @@ lto = true
 codegen-units = 1
 incremental = false
 
+[profile.optsize]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
 [build-dependencies]
 minify-html = "0.9"
 glob = "0.3"
